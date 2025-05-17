@@ -10,18 +10,35 @@
         </div>
       </g-silder>
     </div>
+
+    <!-- 歌单推荐列表 -->
+    <div class="recommend-list">
+      <h1 class="list-title">热门歌单推荐</h1>
+      <ul>
+        <li @click="selectItem(item)" v-for="item in lists" class="item">
+          <div class="icon">
+            <img v-lazy="item.coverImgUrl" width="60" height="60" />
+          </div>
+          <div class="text">
+            <p v-html="item.name" class="name"></p>
+            <p v-html="item.description" class="desc ellipsis"></p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import { getBanner, getHotCategories } from '@/api/recommend'
+import { getBanner, getRecommendPlayList } from '@/api/recommend'
 import GSilder from '@c/common/g-slider'
 
 export default {
   name: 'Recommend',
   data() {
     return {
-      recommends: []
+      recommends: [],
+      lists: []
     }
   },
   components: {
@@ -36,12 +53,14 @@ export default {
       console.log(res)
       this.recommends = res.banners
 
-      const res2 = await getHotCategories()
+      const res2 = await getRecommendPlayList()
       console.log(res2)
+      this.lists = res2.playlists
     },
     loadImg() {
       console.log('加载图片成功')
-    }
+    },
+    selectItem(item) {}
   }
 }
 </script>
@@ -53,7 +72,6 @@ export default {
   top: 88px;
   bottom: 0;
   .slide-wrapper {
-    height: 100%;
     overflow: hidden;
     position: relative;
   }

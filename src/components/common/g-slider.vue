@@ -123,6 +123,9 @@ export default {
       }
       console.log('🚀 ~ _initDots ~  this.dots:', this.dots)
     }
+  },
+  destroyed() {
+    clearTimeout(this.timer)
   }
 }
 </script>
