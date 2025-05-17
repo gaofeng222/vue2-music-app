@@ -17,8 +17,21 @@ module.exports = defineConfig({
       alias: {
         '@': resolve(__dirname, 'src'),
         '@c': resolve(__dirname, 'src/components'),
-        '@v': resolve(__dirname, 'src/views')
+        '@v': resolve(__dirname, 'src/views'),
+        '@a': resolve(__dirname, 'src/assets'),
+        '@u': resolve(__dirname, 'src/utils'),
+        '@s': resolve(__dirname, 'src/store'),
+        '@r': resolve(__dirname, 'src/router')
       }
+    }
+  },
+  // 生产环境关闭console
+  chainWebpack: (config) => {
+    if (process.env.NODE_ENV === 'production') {
+      config.optimization.minimizer('terser').tap((args) => {
+        args[0].terserOptions.compress.drop_console = true
+        return args
+      })
     }
   }
 })
