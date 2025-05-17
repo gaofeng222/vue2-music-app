@@ -1,19 +1,23 @@
 # vue2musicapp
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 资源参考网站
+
+https://github.com/bxm0927/vue-music-webapp/blob/master
