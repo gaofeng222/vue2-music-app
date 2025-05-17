@@ -46,6 +46,13 @@ export default {
         }
       }, 20)
     })
+
+    window.addEventListener('resize', () => {
+      if (!this.slider) return
+      this._setSliderWidth(true)
+      // 重新计算better-scroll的尺寸，让其重新渲染
+      this.slider.refresh()
+    })
   },
   data() {
     return {
@@ -58,7 +65,7 @@ export default {
   computed: {},
 
   methods: {
-    _setSliderWidth() {
+    _setSliderWidth(flag) {
       // 1.获取所有子元素
 
       this.children = this.$refs.sliderGroup.children
@@ -74,13 +81,17 @@ export default {
         width += sliderWidth
       }
       //如果要循环播放，则将第一个元素复制到最后一个位置，同理也将最后一个元素复制到第一个位置
-      if (this.loop) {
+      if (this.loop && !flag) {
         width += 2 * sliderWidth
       }
       this.$refs.sliderGroup.style.width = width + 'px'
       this._initDots()
     },
-    _play() {},
+    _play() {
+      this.timer = setInterval(() => {
+        this.slider.next()
+      }, this.interval)
+    },
     _bindDotClick() {},
     _initSlider() {
       this.slider = new BScroll(this.$refs.slider, {
@@ -90,9 +101,10 @@ export default {
         snap: true,
         snapLoop: this.loop,
         snapThreshold: 0.3,
-        snapSpeed: 400,
-        click: true
+        snapSpeed: 400
+        // click: trues
       })
+      console.log('🚀 ~ _initSlider ~ this.slider:', this.slider)
       this.slider.on('scrollEnd', () => {
         let pageIndex = this.slider.getCurrentPage().pageX
         if (this.loop) {
