@@ -5,7 +5,7 @@
       tag="div"
       class="tab-item"
       :to="{ name: item.name }"
-      :key="item.names"
+      :key="item.name"
     >
       <span class="tab-link">{{ item.title }}</span>
     </router-link>
