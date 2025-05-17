@@ -1,39 +1,44 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
 
+import Recommend from '@v/Recommend'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    redirect: '/recommend'
   },
   {
     path: '/recommend',
-    component: import(/* webpackChunkName: "recommend" */ '@v/Recommend')
+    name: 'recommend',
+    component: Recommend
   },
   {
     path: '/singer',
-    component: import(/* webpackChunkName: "singer" */ '@v/Singer')
+    name: 'singer',
+    component: () => import(/* webpackChunkName: "singer" */ '@v/Singer')
   },
   {
     path: '/rank',
-    component: import(/* webpackChunkName: "rank" */ '@v/Rank')
+    name: 'rank',
+    component: () => import(/* webpackChunkName: "rank" */ '@v/Rank')
   },
   {
     path: '/search',
-    component: import(/* webpackChunkName: "search" */ '@v/Search')
+    name: 'search',
+    component: () => import(/* webpackChunkName: "search" */ '@v/Search')
   },
   {
     path: '/user',
-    component: import(/* webpackChunkName: "about" */ '@v/User')
+    name: 'user',
+    component: () => import(/* webpackChunkName: "user" */ '@v/User')
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
