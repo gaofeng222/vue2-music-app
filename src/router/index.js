@@ -12,23 +12,23 @@ const routes = [
   },
   {
     path: '/recommend',
-    component: import(/* webpackChunkName: "recommend" */ '@v/Recommend.vue')
+    component: import(/* webpackChunkName: "recommend" */ '@v/Recommend')
   },
   {
     path: '/singer',
-    component: import(/* webpackChunkName: "singer" */ '@v/Singer.vue')
+    component: import(/* webpackChunkName: "singer" */ '@v/Singer')
   },
   {
     path: '/rank',
-    component: import(/* webpackChunkName: "rank" */ '@v/Rank.vue')
+    component: import(/* webpackChunkName: "rank" */ '@v/Rank')
   },
   {
     path: '/search',
-    component: import(/* webpackChunkName: "search" */ '@v/Search.vue')
+    component: import(/* webpackChunkName: "search" */ '@v/Search')
   },
   {
     path: '/user',
-    component: import(/* webpackChunkName: "about" */ '@v/User.vue')
+    component: import(/* webpackChunkName: "about" */ '@v/User')
   }
 ]
 
